@@ -15,7 +15,7 @@ import "./NavBar.css";
 function NavBar() {
   return (
     <nav className="NavBar navbar navbar-light bg-light">
-      <NavLink to="/">Jobly</NavLink>
+      <NavLink className="navbar-brand" to="/">Jobly</NavLink>
       <NavLink to="/companies" end>Companies</NavLink>
       <NavLink to="/jobs">Jobs</NavLink>
     </nav>
