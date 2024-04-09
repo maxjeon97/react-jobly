@@ -11,33 +11,37 @@ import CompanyCardList from "./CompanyCardList";
  * State:
  * - companies: array of company objects
  *
- * App -> RoutesList -> CompaniesList
+ * RoutesList -> CompaniesList -> CompanyCardList
  */
 
 function CompaniesList() {
-
     const [companies, setCompanies] = useState({
         data: null,
         isLoading: true,
-        searched: ""
+        searched: "",
     });
 
     useEffect(function fetchCompaniesWhenMounted() {
-        async function fetchCompanies() {
-            const companies = await JoblyApi.getCompanies();
-            setCompanies(
-                {
-                    isLoading: false,
-                    data: companies,
-                    searched: ""
-                }
-            );
-        }
-        fetchCompanies();
+        // async function fetchCompanies() {
+        //     const companies = await JoblyApi.getCompanies();
+        //     setCompanies(
+        //         {
+        //             isLoading: false,
+        //             data: companies,
+        //             searched: ""
+        //         }
+        //     );
+        // }
+        // fetchCompanies();
+        handleSearch(companies.searched);
     }, []);
 
+    /** handles search for companies that match search term */
     async function handleSearch(searchTerm) {
-        const params = { nameLike: searchTerm };
+        const params = searchTerm === ""
+            ? {}
+            : { nameLike: searchTerm };
+
         const companies = await JoblyApi.getCompanies(params);
         setCompanies({
             data: companies,
@@ -46,15 +50,13 @@ function CompaniesList() {
         });
     }
 
-
     if (companies.isLoading) return <h1>Loading....</h1>;
-
 
     return (
         <div className='CompaniesList'>
             <SearchForm handleSearch={handleSearch} />
             {companies.searched
-                ? <h1>{`Search Results for ${companies.searched}`}</h1>
+                ? <h1>{`Search Results for '${companies.searched}'`}</h1>
                 : <h1>All Companies</h1>}
             <CompanyCardList companies={companies.data} />
         </div>
