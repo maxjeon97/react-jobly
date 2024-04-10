@@ -1,10 +1,11 @@
 .NavBar {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(93, 99, 100);
   text-align: center;
   font-weight: bold;
 }
 
 .NavBar a {
+  color: white;
   padding: 0.5em 0;
   width: 10em;
   display: inline-block;
