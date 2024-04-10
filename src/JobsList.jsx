@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import JoblyApi from './api';
 import SearchForm from './SearchForm';
 import JobCardList from "./JobCardList";
+import LoadingSpinner from './LoadingSpinner';
 
 /** JobsList component for Jobly.
  *
@@ -18,16 +19,15 @@ import JobCardList from "./JobCardList";
 function JobsList() {
     const [jobs, setJobs] = useState({
         data: null,
-        isLoading: true,
-        searched: ""
+        searched: "",
     });
 
     useEffect(function fetchJobsWhenMounted() {
-        handleSearch(jobs.searched);
+        search(jobs.searched);
     }, []);
 
     /** handles search for jobs that match search term */
-    async function handleSearch(searchTerm) {
+    async function search(searchTerm) {
         const params = searchTerm === ""
             ? {}
             : { title: searchTerm };
@@ -35,16 +35,15 @@ function JobsList() {
         const jobs = await JoblyApi.getJobs(params);
         setJobs({
             data: jobs,
-            isLoading: false,
-            searched: searchTerm
+            searched: searchTerm,
         });
     }
 
-    if (jobs.isLoading) return <h1>Loading....</h1>;
+    if (!jobs.data) return <LoadingSpinner />;
 
     return (
         <div className='JobsList col-md-8 offset-md-2'>
-            <SearchForm handleSearch={handleSearch} />
+            <SearchForm handleSearch={search} />
             {jobs.searched
                 ? <h1>{`Search Results for '${jobs.searched}'`}</h1>
                 : <h1>All Jobs</h1>}

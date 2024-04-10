@@ -1,7 +1,9 @@
 import './CompanyDetail.css';
 import { useState, useEffect } from 'react';
-import { createPath, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import JoblyApi from './api';
+import JobCardList from './JobCardList';
+import LoadingSpinner from './LoadingSpinner';
 
 /** CompanyDetail component for Jobly.
  *
@@ -16,7 +18,6 @@ import JoblyApi from './api';
 function CompanyDetail() {
     const [company, setCompany] = useState({
         data: null,
-        isLoading: true,
     });
 
     const { handle } = useParams();
@@ -24,24 +25,17 @@ function CompanyDetail() {
     useEffect(function fetchCompanyWhenMounted() {
         async function fetchCompany() {
             const company = await JoblyApi.getCompany(handle);
-            const jobs = company.jobs.map((job) => (
-                {
-                    ...job,
-                    companyHandle: company.handle,
-                    companyName: company.name
-                }
-            ));
             setCompany(
                 {
-                    data: {...company, jobs},
-                    isLoading: false,
+                    data: company,
                 }
             );
         }
         fetchCompany();
     }, []);
 
-    if (company.isLoading) return <h1>Loading....</h1>;
+    // TODO: add loading spinner component
+    if (!company.data) return <LoadingSpinner />;
 
     return (
         <div className='CompanyDetail col-md-8 offset-md-2'>

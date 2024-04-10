@@ -1,5 +1,6 @@
 import './JobCardList.css';
 import JobCard from "./JobCard";
+import SearchNotFound from "./SearchNotFound";
 
 /** JobCardList component for Jobly.
  *
@@ -9,14 +10,15 @@ import JobCard from "./JobCard";
  *
  * State: none
  *
- * {JobsList, CompanyDetail} -> JobCardList -> JobCard
+ * {JobsList, CompanyDetail} -> JobCardList -> {SearchNotFound, JobCard}
  */
+
 
 function JobCardList({ jobs }) {
     return (
         <div className='JobCardList'>
             {jobs.length === 0 &&
-                <p className='JobCardList-404'>Sorry, no results were found!</p>}
+                <SearchNotFound />}
             {jobs.map(j => <JobCard key={j.id} job={j} />)}
         </div>
     );

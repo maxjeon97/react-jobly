@@ -3,7 +3,7 @@ import { useState } from "react";
 /** SearchForm component for Jobly
  *
  * props: handleSearch()
- * state: formData
+ * state: searchTerm
  *
  *
  * {JobsList, CompaniesList} -> SearchForm
@@ -22,14 +22,13 @@ function SearchForm({ handleSearch }) {
     function handleSubmit(evt) {
         evt.preventDefault();
         handleSearch(searchTerm.trim());
-
     }
 
     return (
         <div className="SearchForm mb-4 mt-4">
             <form onSubmit={handleSubmit}>
                 <div className="row justify-content-center gx-0">
-                    <div className="col-8">
+                    <div className="col-4">
                         <input type="text"
                             id="searchTerm"
                             className="form-control"

@@ -14,8 +14,10 @@ import "./NavBar.css";
 
 function NavBar() {
   return (
-    <nav className="NavBar navbar navbar-light">
-      <NavLink className="navbar-brand" to="/" end>Jobly</NavLink>
+    <nav className="NavBar navbar navbar-light sticky-top">
+      <NavLink
+        className="navbar-brand"
+        to="/" end>Jobly</NavLink>
       <NavLink to="/companies" end>Companies</NavLink>
       <NavLink to="/jobs">Jobs</NavLink>
     </nav>
