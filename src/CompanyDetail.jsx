@@ -34,7 +34,6 @@ function CompanyDetail() {
         fetchCompany();
     }, []);
 
-    // TODO: add loading spinner component
     if (!company.data) return <LoadingSpinner />;
 
     return (

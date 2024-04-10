@@ -7,7 +7,10 @@ import RoutesList from './RoutesList';
 /** Component for entire page.
  *
  * Props: none
- * State: none
+ *
+ * State:
+ * - user
+ * - token
  *
 */
 
