@@ -15,7 +15,7 @@ function CompanyCardList({ companies }) {
     return (
         <div className='CompanyCardList'>
             {companies.length === 0 &&
-                <p>Sorry, no results were found!</p>}
+                <p className='CompanyCardList-404'>Sorry, no results were found!</p>}
             {companies.map(c => <CompanyCard key={c.handle} company={c} />)}
         </div>
     );

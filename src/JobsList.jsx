@@ -22,23 +22,15 @@ function JobsList() {
     });
 
     useEffect(function fetchJobsWhenMounted() {
-        // async function fetchJobs() {
-        //     const jobs = await JoblyApi.getJobs();
-        //     setJobs(
-        //         {
-        //             isLoading: false,
-        //             data: jobs,
-        //             searched: ""
-        //         }
-        //     );
-        // }
-        // fetchJobs();
         handleSearch(jobs.searched);
     }, []);
 
     /** handles search for jobs that match search term */
     async function handleSearch(searchTerm) {
-        const params = { title: searchTerm };
+        const params = searchTerm === ""
+            ? {}
+            : { title: searchTerm };
+
         const jobs = await JoblyApi.getJobs(params);
         setJobs({
             data: jobs,
@@ -50,7 +42,7 @@ function JobsList() {
     if (jobs.isLoading) return <h1>Loading....</h1>;
 
     return (
-        <div className='JobsList'>
+        <div className='JobsList col-md-8 offset-md-2'>
             <SearchForm handleSearch={handleSearch} />
             {jobs.searched
                 ? <h1>{`Search Results for '${jobs.searched}'`}</h1>

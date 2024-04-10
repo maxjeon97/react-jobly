@@ -53,7 +53,7 @@ function CompaniesList() {
     if (companies.isLoading) return <h1>Loading....</h1>;
 
     return (
-        <div className='CompaniesList'>
+        <div className='CompaniesList col-md-8 offset-md-2'>
             <SearchForm handleSearch={handleSearch} />
             {companies.searched
                 ? <h1>{`Search Results for '${companies.searched}'`}</h1>
