@@ -3,6 +3,7 @@ import Homepage from './Homepage';
 import CompaniesList from './CompaniesList';
 import JobsList from './JobsList';
 import CompanyDetail from './CompanyDetail';
+import EditProfileForm from "./EditProfileForm";
 
 
 /**RouteList component that contains all Routes
@@ -20,6 +21,8 @@ function RoutesList() {
             <Route path='/companies' element={<CompaniesList />} />
             <Route path='/jobs' element={<JobsList />} />
             <Route path='/companies/:handle' element={<CompanyDetail />} />
+
+            <Route path='/profile' element={<EditProfileForm />} />
             <Route path='*' element={<Navigate to="/" />} />
         </Routes>
     );

@@ -3,8 +3,9 @@ import { BrowserRouter } from 'react-router-dom';
 import NavBar from './NavBar';
 import RoutesList from './RoutesList';
 import userContext from './userContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import JoblyApi from './api';
+import { jwtDecode } from 'jwt-decode';
 
 
 /** Component for entire page.
@@ -15,28 +16,41 @@ import JoblyApi from './api';
  * - user
  * - token
  *
+ * App -> {Navbar, RoutesList}
 */
 
+// FIXME: NEED TO BUILD OUT ALERT COMPONENT FOR VALIDATION FOR OUR FORMS FOR LOGIN SIGNUP AND EDITPROFILE
 function App() {
-  const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [token, setToken] = useState(null);
+
+  useEffect(function fetchUserWhenMounted() {
+    async function fetchUser() {
+      if(token) {
+        const decodedPayload = jwtDecode(token);
+        const username = decodedPayload.username;
+        const user = await JoblyApi.getUser(username);
+        JoblyApi.token = token;
+        setCurrentUser(user);
+      }
+    }
+    fetchUser();
+  }, [token]);
 
   /** logs a user in */
   async function login(formData) {
     const token = await JoblyApi.login(formData);
-    JoblyApi.token = token;
     setToken(token);
   }
 
   /** registers a user */
-  async function register(formData) {
-    const token = await JoblyApi.register(formData);
-    JoblyApi.token = token;
+  async function signup(formData) {
+    const token = await JoblyApi.signup(formData);
     setToken(token);
   }
 
   /** updates a user profile */
-  async function updateUserProfile(formData) {
+  async function updateUser(formData) {
     const updatedUser = await JoblyApi.updateUser(formData);
     setCurrentUser(updatedUser);
   }
@@ -44,18 +58,20 @@ function App() {
   /** logs a user out */
   async function logout() {
     setCurrentUser(null);
-    JoblyApi.token = null;
     setToken(null);
   }
 
   return (
     <div className="App">
-        <BrowserRouter>
-          <userContext.Provider value={{currentUser}}>
-            <NavBar />
-            <RoutesList />
-          </userContext.Provider>
-        </BrowserRouter>
+      <BrowserRouter>
+        <userContext.Provider value={{ currentUser }}>
+          <NavBar logout={logout}/>
+          <RoutesList
+          login={login}
+          signup={signup}
+          updateUser={updateUser} />
+        </userContext.Provider>
+      </BrowserRouter>
     </div>
   );
 };

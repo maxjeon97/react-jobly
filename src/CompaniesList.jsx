@@ -4,6 +4,8 @@ import JoblyApi from './api';
 import SearchForm from './SearchForm';
 import CompanyCardList from "./CompanyCardList";
 import LoadingSpinner from './LoadingSpinner';
+import { useContext } from "react";
+import userContext from "./userContext";
 
 /** CompaniesList component for Jobly.
  *

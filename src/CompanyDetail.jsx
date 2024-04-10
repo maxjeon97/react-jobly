@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
 import LoadingSpinner from './LoadingSpinner';
+import { useContext } from "react";
+import userContext from "./userContext";
 
 /** CompanyDetail component for Jobly.
  *

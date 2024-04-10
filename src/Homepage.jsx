@@ -1,4 +1,6 @@
 import './Homepage.css';
+import { useContext } from "react";
+import userContext from "./userContext";
 
 /** Homepage for Jobly.
  *
