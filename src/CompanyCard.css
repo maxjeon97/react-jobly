@@ -1,0 +1,9 @@
+.CompanyCard {
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.CompanyCard-body {
+  padding-left: 15px;
+  padding-top: 10px;
+}

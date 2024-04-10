@@ -37,7 +37,7 @@ function CompanyDetail() {
     if (company.isLoading) return <h1>Loading....</h1>;
 
     return (
-        <div className='CompanyDetail'>
+        <div className='CompanyDetail col-md-8 offset-md-2'>
             <h2>{company.data.name}</h2>
             <p>{company.data.description}</p>
             <JobCardList jobs={company.data.jobs} />
