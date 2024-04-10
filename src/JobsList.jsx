@@ -10,6 +10,7 @@ import JobCardList from "./JobCardList";
  *
  * State:
  * - jobs: array of job objects
+ *  [ { id, title, salary, equity, companyHandle, companyName }, ...]
  *
  * RoutesList -> JobsList -> JobCardList
  */

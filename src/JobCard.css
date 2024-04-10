@@ -1,0 +1,9 @@
+.JobCard {
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.JobCard-body {
+  padding-left: 15px;
+  padding-top: 10px;
+}

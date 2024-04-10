@@ -1,6 +1,6 @@
 import './CompanyDetail.css';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { createPath, useParams } from 'react-router-dom';
 import JoblyApi from './api';
 
 /** CompanyDetail component for Jobly.
@@ -24,9 +24,16 @@ function CompanyDetail() {
     useEffect(function fetchCompanyWhenMounted() {
         async function fetchCompany() {
             const company = await JoblyApi.getCompany(handle);
+            const jobs = company.jobs.map((job) => (
+                {
+                    ...job,
+                    companyHandle: company.handle,
+                    companyName: company.name
+                }
+            ));
             setCompany(
                 {
-                    data: company,
+                    data: {...company, jobs},
                     isLoading: false,
                 }
             );

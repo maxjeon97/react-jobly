@@ -21,7 +21,8 @@ function SearchForm({ handleSearch }) {
     /** function to call a function in parent then clears search form */
     function handleSubmit(evt) {
         evt.preventDefault();
-        handleSearch(searchTerm);
+        handleSearch(searchTerm.trim());
+
     }
 
     return (
