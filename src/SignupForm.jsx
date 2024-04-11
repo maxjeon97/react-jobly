@@ -1,7 +1,6 @@
-import { useState, useContext } from "react";
-import userContext from "./userContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Alert from "./Alert";
+import { useNavigate } from "react-router-dom";
 
 /** Form for Signing up
  *
@@ -17,7 +16,6 @@ import Alert from "./Alert";
  */
 
 function SignupForm({ signup }) {
-    const { currentUser } = useContext(userContext);
 
     const initialState =
     {
@@ -53,7 +51,6 @@ function SignupForm({ signup }) {
         }));
     }
 
-    if (currentUser) return <Navigate to="/" />;
 
     return (
         <div className="SignupForm container col-lg-4 mt-4">

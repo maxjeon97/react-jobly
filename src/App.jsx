@@ -8,7 +8,6 @@ import JoblyApi from './api';
 import { jwtDecode } from 'jwt-decode';
 import LoadingSpinner from './LoadingSpinner';
 
-
 /** Component for entire page.
  *
  * Props: none
@@ -24,19 +23,21 @@ import LoadingSpinner from './LoadingSpinner';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(function fetchUserOnLoadAndTokenChange() {
     async function fetchUser() {
       if (token) {
         JoblyApi.token = token;
+        localStorage.setItem('token', token);
         const decodedPayload = jwtDecode(token);
         const username = decodedPayload.username;
         const user = await JoblyApi.getUser(username);
         setCurrentUser(user);
       }
       else {
+        localStorage.removeItem('token');
         setCurrentUser(null);
       }
       setIsLoaded(true);
@@ -47,14 +48,12 @@ function App() {
   /** logs a user in */
   async function login(formData) {
     const token = await JoblyApi.login(formData);
-    localStorage.setItem('token', token);
     setToken(token);
   }
 
   /** registers a user */
   async function signup(formData) {
     const token = await JoblyApi.signup(formData);
-    localStorage.setItem('token', token);
     setToken(token);
   }
 
@@ -66,7 +65,6 @@ function App() {
 
   /** logs a user out */
   async function logout() {
-    localStorage.removeItem('token');
     setToken(null);
   }
 

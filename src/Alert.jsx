@@ -12,6 +12,7 @@ import './Alert.css';
  */
 
 function Alert({ messages, type }) {
+    console.log("inAlert", messages)
     return (
         <div className="Alert">
             <div className={`alert alert-${type}`} role="alert">

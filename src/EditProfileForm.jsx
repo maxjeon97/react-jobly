@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import userContext from "./userContext";
+import { useState } from "react";
 import Alert from "./Alert";
 
 
@@ -16,9 +15,7 @@ import Alert from "./Alert";
  */
 
 function EditProfileForm({ updateUser }) {
-    const { currentUser } = useContext(userContext);
 
-    if (!currentUser) return <Navigate to="/" />;
 
     const initialState =
     {

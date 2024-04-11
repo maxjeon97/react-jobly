@@ -4,8 +4,6 @@ import JoblyApi from './api';
 import SearchForm from './SearchForm';
 import JobCardList from "./JobCardList";
 import LoadingSpinner from './LoadingSpinner';
-import { useContext } from "react";
-import userContext from "./userContext";
 
 /** JobsList component for Jobly.
  *
@@ -23,6 +21,7 @@ function JobsList() {
         data: null,
         searched: "",
     });
+
 
     useEffect(function fetchJobsWhenMounted() {
         search(jobs.searched);

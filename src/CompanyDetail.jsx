@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
 import LoadingSpinner from './LoadingSpinner';
-import { useContext } from "react";
-import userContext from "./userContext";
 import Alert from './Alert';
 
 /** CompanyDetail component for Jobly.
@@ -23,7 +21,7 @@ function CompanyDetail() {
     const [company, setCompany] = useState({
         data: null,
     });
-    const [notFound, setNotFound] = useState(false);
+    const [errors, setErrors] = useState([]);
 
     const { handle } = useParams();
 
@@ -38,14 +36,14 @@ function CompanyDetail() {
                 );
             }
             catch (err) {
-                setNotFound(true);
+                setErrors([...err])
             }
         }
         fetchCompany();
     }, []);
 
-    if (notFound) {
-        return <Alert messages={[`No company: ${handle}`]} type="danger" />;
+    if (errors.length > 0 ) {
+        return <Alert messages={errors} type="danger" />;
     }
 
     if (!company.data) return <LoadingSpinner />;
