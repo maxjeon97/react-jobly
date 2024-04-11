@@ -42,7 +42,7 @@ function JobsList() {
     if (!jobs.data) return <LoadingSpinner />;
 
     return (
-        <div className='JobsList col-md-8 offset-md-2'>
+        <div className='JobsList col-md-6 offset-md-3'>
             <SearchForm handleSearch={search} />
             {jobs.searched
                 ? <h1>{`Search Results for '${jobs.searched}'`}</h1>

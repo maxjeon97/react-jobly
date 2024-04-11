@@ -41,7 +41,7 @@ function CompaniesList() {
     if (!companies.data) return <LoadingSpinner />;
 
     return (
-        <div className='CompaniesList col-md-8 offset-md-2'>
+        <div className='CompaniesList col-md-6 offset-md-3'>
             <SearchForm handleSearch={search} />
             {companies.searched
                 ? <h1>{`Search Results for '${companies.searched}'`}</h1>

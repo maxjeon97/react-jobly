@@ -23,7 +23,7 @@ function CompanyCard({ company }) {
                     {company.logoUrl &&
                         <img
                             className="CompanyCard-logo float-end me-3"
-                            src={"/logo1.png"}
+                            src={company.logoUrl}
                             alt={company.name} />}
                 </h5>
                 <p>{company.description}</p>

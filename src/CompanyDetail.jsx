@@ -49,7 +49,7 @@ function CompanyDetail() {
     if (!company.data) return <LoadingSpinner />;
 
     return (
-        <div className='CompanyDetail col-md-8 offset-md-2'>
+        <div className='CompanyDetail col-md-6 offset-md-3'>
             <h2>{company.data.name}</h2>
             <p>{company.data.description}</p>
             <JobCardList jobs={company.data.jobs} />
