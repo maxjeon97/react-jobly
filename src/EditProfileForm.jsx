@@ -31,7 +31,8 @@ function EditProfileForm({ updateUser }) {
     const [formData, setFormData] = useState(initialState);
     const [formAlerts, setFormAlerts] = useState({
         hasSubmitted: false,
-        errors: [],
+        isSuccessful: false,
+        alertMessages: [],
     });
 
     /** handles form submission */
@@ -41,14 +42,15 @@ function EditProfileForm({ updateUser }) {
             await updateUser(formData);
             setFormAlerts({
                 hasSubmitted: true,
-                errors: [],
+                isSuccessful: true,
+                alertMessages: ["Updated profile successfully!"],
             });
         }
         catch (err) {
-            console.log("caughterror", err);
             setFormAlerts({
                 hasSubmitted: true,
-                errors: [...err],
+                isSuccessful: false,
+                alertMessages: [...err],
             });
         }
     }
@@ -115,7 +117,11 @@ function EditProfileForm({ updateUser }) {
                                 onChange={handleChange} />
                         </div>
                         {formAlerts.hasSubmitted &&
-                            <Alert errors={formAlerts.errors} />}
+                            <Alert
+                                messages={formAlerts.alertMessages}
+                                type={formAlerts.isSuccessful
+                                    ? "success"
+                                    : "danger"} />}
                         <div className="d-grid">
                             <button
                                 type='submit'

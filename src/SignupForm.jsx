@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import userContext from "./userContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 
 /** Form for Signing up
@@ -30,12 +30,14 @@ function SignupForm({ signup }) {
 
     const [formData, setFormData] = useState(initialState);
     const [errors, setErrors] = useState([]);
+    const navigate = useNavigate();
 
     /** handles form submission */
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
             await signup(formData);
+            navigate("/");
         }
         catch (err) {
             setErrors([...err]);
@@ -122,7 +124,7 @@ function SignupForm({ signup }) {
                                 onChange={handleChange} />
                         </div>
                         {errors.length > 0 &&
-                            <Alert errors={errors} />}
+                            <Alert messages={errors} type="danger"/>}
                         <div className="d-grid">
                             <button
                                 type='submit'
