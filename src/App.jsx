@@ -27,10 +27,10 @@ function App() {
   useEffect(function fetchUserWhenMounted() {
     async function fetchUser() {
       if(token) {
+        JoblyApi.token = token;
         const decodedPayload = jwtDecode(token);
         const username = decodedPayload.username;
         const user = await JoblyApi.getUser(username);
-        JoblyApi.token = token;
         setCurrentUser(user);
       }
     }
@@ -46,6 +46,7 @@ function App() {
   /** registers a user */
   async function signup(formData) {
     const token = await JoblyApi.signup(formData);
+    console.log("insignup", token)
     setToken(token);
   }
 

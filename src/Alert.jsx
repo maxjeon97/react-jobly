@@ -17,8 +17,10 @@ function Alert({ errors }) {
                 </div>}
             {errors.length > 0 &&
                 <div className="alert alert-danger" role="alert">
-                    {errors.map(e => <p className="mb-0 small">{e}</p>)}
+                    {errors.map((e, idx) => <p key={idx} className="mb-0 small">{e}</p>)}
                 </div>}
         </div>
     );
 }
+
+export default Alert;

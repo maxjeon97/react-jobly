@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import userContext from "./userContext";
+import Alert from "./Alert";
 
 
 /** Form for editing user profile
@@ -30,18 +31,20 @@ function EditProfileForm({ updateUser }) {
         hasSubmitted: false,
         errors: [],
     });
-
+    console.log("curruseris",currentUser)
     /** handles form submission */
-    function handleSubmit(evt) {
+    async function handleSubmit(evt) {
         evt.preventDefault();
         try {
-            updateUser(formData);
+            await updateUser(formData);
         }
         catch (err) {
+            console.log("caughterror", err)
             setFormAlerts({
                 hasSubmitted: true,
-                errors: [...err.error.message],
+                errors: [...err],
             });
+            return;
         }
         setFormAlerts({
             ...formAlerts,
@@ -58,6 +61,7 @@ function EditProfileForm({ updateUser }) {
         }));
     }
 
+
     return (
         <div className="card">
             <div className="card-body">
@@ -71,10 +75,8 @@ function EditProfileForm({ updateUser }) {
                         <input
                             disabled
                             className="form-control"
-                            placeholder={formData.username}
                             name="username"
-                            value={formData.username}
-                            onChange={handleChange} />
+                            value={formData.username} />
                     </div>
                     <div className="mb-3">
                         <label
@@ -83,7 +85,6 @@ function EditProfileForm({ updateUser }) {
                         >First Name</label>
                         <input
                             className="form-control"
-                            placeholder={formData.firstName}
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleChange} />
@@ -95,7 +96,6 @@ function EditProfileForm({ updateUser }) {
                         >Last Name</label>
                         <input
                             className="form-control"
-                            placeholder={formData.lastName}
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange} />
@@ -107,7 +107,6 @@ function EditProfileForm({ updateUser }) {
                         >Email</label>
                         <input
                             className="form-control"
-                            placeholder={formData.email}
                             name="email"
                             value={formData.email}
                             onChange={handleChange} />
