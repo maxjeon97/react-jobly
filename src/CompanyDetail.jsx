@@ -14,7 +14,7 @@ import userContext from "./userContext";
  * State:
  * - company: singular company object associated with company handle from URL
  *
- * RoutesList -> CompanyDetail -> JobCardList
+ * RoutesList -> CompanyDetail -> {JobCardList, LoadingSpinner}
  */
 
 function CompanyDetail() {

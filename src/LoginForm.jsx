@@ -50,41 +50,46 @@ function LoginForm({ login }) {
     if (currentUser) return <Navigate to="/" />;
 
     return (
-        <div className="card">
-            <div className="card-body">
-                <form
-                    className="LoginForm" onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="username"
-                        >Username</label>
-                        <input
-                            className="form-control"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="password"
-                        >Password</label>
-                        <input
-                            className="form-control"
-                            name="password"
-                            value={formData.password}
-                            type="password"
-                            onChange={handleChange} />
-                    </div>
-                    {errors.length > 0 &&
-                        <Alert errors={errors} />}
-                    <div className="d-grid">
-                        <button
-                            type='submit'
-                            className='btn btn-primary'>Login</button>
-                    </div>
-                </form>
+        <div className="LoginForm container col-lg-4 mt-4">
+            <h2 className="text-light mb-2">Login</h2>
+            <div className="card">
+                <div className="card-body">
+                    <form
+                        className="LoginForm" onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="username"
+                            >Username</label>
+                            <input
+                                id="username"
+                                className="form-control"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleChange} />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="password"
+                            >Password</label>
+                            <input
+                                id="password"
+                                className="form-control"
+                                name="password"
+                                value={formData.password}
+                                type="password"
+                                onChange={handleChange} />
+                        </div>
+                        {errors.length > 0 &&
+                            <Alert errors={errors} />}
+                        <div className="d-grid">
+                            <button
+                                type='submit'
+                                className='btn btn-primary'>Login</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

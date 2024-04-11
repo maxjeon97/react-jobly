@@ -29,7 +29,7 @@ function SignupForm({ signup }) {
     };
 
     const [formData, setFormData] = useState(initialState);
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([]);
 
     /** handles form submission */
     async function handleSubmit(evt) {
@@ -38,7 +38,7 @@ function SignupForm({ signup }) {
             await signup(formData);
         }
         catch (err) {
-            setErrors([...err])
+            setErrors([...err]);
         }
     }
 
@@ -54,74 +54,82 @@ function SignupForm({ signup }) {
     if (currentUser) return <Navigate to="/" />;
 
     return (
-        <div className="card">
-            <div className="card-body">
-                <form
-                    className="LoginForm" onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="username"
-                        >Username</label>
-                        <input
-                            className="form-control"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="password"
-                        >Password</label>
-                        <input
-                            className="form-control"
-                            name="password"
-                            value={formData.password}
-                            type="password"
-                            onChange={handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="firstName"
-                        >First Name</label>
-                        <input
-                            className="form-control"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="lastName"
-                        >Last Name</label>
-                        <input
-                            className="form-control"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="email"
-                        >Email</label>
-                        <input
-                            className="form-control"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange} />
-                    </div>
-                    {errors.length > 0 &&
-                        <Alert errors={errors} />}
-                    <div className="d-grid">
-                        <button
-                            type='submit'
-                            className='btn btn-primary'>Signup</button>
-                    </div>
-                </form>
+        <div className="SignupForm container col-lg-4 mt-4">
+            <h2 className="text-light mb-2">Signup</h2>
+            <div className="card">
+                <div className="card-body">
+                    <form
+                        className="LoginForm" onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="username"
+                            >Username</label>
+                            <input
+                                id="username"
+                                className="form-control"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleChange} />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="password"
+                            >Password</label>
+                            <input
+                                id="password"
+                                className="form-control"
+                                name="password"
+                                value={formData.password}
+                                type="password"
+                                onChange={handleChange} />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="firstName"
+                            >First Name</label>
+                            <input
+                                id="firstName"
+                                className="form-control"
+                                name="firstName"
+                                value={formData.firstName}
+                                onChange={handleChange} />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="lastName"
+                            >Last Name</label>
+                            <input
+                                id="lastName"
+                                className="form-control"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleChange} />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="email"
+                            >Email</label>
+                            <input
+                                id="email"
+                                className="form-control"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange} />
+                        </div>
+                        {errors.length > 0 &&
+                            <Alert errors={errors} />}
+                        <div className="d-grid">
+                            <button
+                                type='submit'
+                                className='btn btn-primary'>Signup</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

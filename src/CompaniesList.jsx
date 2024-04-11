@@ -14,7 +14,7 @@ import userContext from "./userContext";
  * State:
  * - companies: array of company objects
  *
- * RoutesList -> CompaniesList -> CompanyCardList
+ * RoutesList -> CompaniesList -> {CompanyCardList, LoadingSpinner, SearchForm}
  */
 
 function CompaniesList() {

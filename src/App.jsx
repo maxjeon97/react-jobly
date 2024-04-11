@@ -19,19 +19,22 @@ import { jwtDecode } from 'jwt-decode';
  * App -> {Navbar, RoutesList}
 */
 
-// FIXME: NEED TO BUILD OUT ALERT COMPONENT FOR VALIDATION FOR OUR FORMS FOR LOGIN SIGNUP AND EDITPROFILE
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(null);
 
   useEffect(function fetchUserWhenMounted() {
     async function fetchUser() {
-      if(token) {
+      if (token) {
         JoblyApi.token = token;
         const decodedPayload = jwtDecode(token);
         const username = decodedPayload.username;
         const user = await JoblyApi.getUser(username);
         setCurrentUser(user);
+      }
+      else {
+        setCurrentUser(null);
       }
     }
     fetchUser();
@@ -46,7 +49,6 @@ function App() {
   /** registers a user */
   async function signup(formData) {
     const token = await JoblyApi.signup(formData);
-    console.log("insignup", token)
     setToken(token);
   }
 
@@ -58,7 +60,6 @@ function App() {
 
   /** logs a user out */
   async function logout() {
-    setCurrentUser(null);
     setToken(null);
   }
 
@@ -66,11 +67,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <userContext.Provider value={{ currentUser }}>
-          <NavBar logout={logout}/>
+          <NavBar logout={logout} />
           <RoutesList
-          login={login}
-          signup={signup}
-          updateUser={updateUser} />
+            login={login}
+            signup={signup}
+            updateUser={updateUser} />
         </userContext.Provider>
       </BrowserRouter>
     </div>

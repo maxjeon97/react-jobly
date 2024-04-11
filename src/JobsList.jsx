@@ -15,7 +15,7 @@ import userContext from "./userContext";
  * - jobs: array of job objects
  *  [ { id, title, salary, equity, companyHandle, companyName }, ...]
  *
- * RoutesList -> JobsList -> JobCardList
+ * RoutesList -> JobsList -> {JobCardList, LoadingSpinner, SearchForm}
  */
 
 function JobsList() {

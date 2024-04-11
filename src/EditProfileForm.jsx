@@ -31,25 +31,24 @@ function EditProfileForm({ updateUser }) {
         hasSubmitted: false,
         errors: [],
     });
-    console.log("curruseris",currentUser)
+
     /** handles form submission */
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
             await updateUser(formData);
+            setFormAlerts({
+                hasSubmitted: true,
+                errors: [],
+            });
         }
         catch (err) {
-            console.log("caughterror", err)
+            console.log("caughterror", err);
             setFormAlerts({
                 hasSubmitted: true,
                 errors: [...err],
             });
-            return;
         }
-        setFormAlerts({
-            ...formAlerts,
-            hasSubmitted: true,
-        });
     }
 
     /** handles input change */
@@ -61,64 +60,67 @@ function EditProfileForm({ updateUser }) {
         }));
     }
 
-
     return (
-        <div className="card">
-            <div className="card-body">
-                <form
-                    className="EditProfileForm" onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="username"
-                        >Username</label>
-                        <input
-                            disabled
-                            className="form-control"
-                            name="username"
-                            value={formData.username} />
-                    </div>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="firstName"
-                        >First Name</label>
-                        <input
-                            className="form-control"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="lastName"
-                        >Last Name</label>
-                        <input
-                            className="form-control"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange} />
-                    </div>
-                    <div className="mb-3">
-                        <label
-                            className="form-label"
-                            htmlFor="email"
-                        >Email</label>
-                        <input
-                            className="form-control"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange} />
-                    </div>
-                    {formAlerts.hasSubmitted &&
-                        <Alert errors={formAlerts.errors} />}
-                    <div className="d-grid">
-                        <button
-                            type='submit'
-                            className='btn btn-primary'>Save Changes</button>
-                    </div>
-                </form>
+        <div className="EditProfileForm container col-lg-4 mt-4">
+            <h2 className="text-light mb-2">Edit Profile</h2>
+            <div className="card">
+                <div className="card-body">
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                            >Username</label>
+                            <input
+                                disabled
+                                className="form-control"
+                                name="username"
+                                value={formData.username} />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="firstName"
+                            >First Name</label>
+                            <input
+                                id="firstName"
+                                className="form-control"
+                                name="firstName"
+                                value={formData.firstName}
+                                onChange={handleChange} />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="lastName"
+                            >Last Name</label>
+                            <input
+                                id="lastName"
+                                className="form-control"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleChange} />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                className="form-label fw-bold"
+                                htmlFor="email"
+                            >Email</label>
+                            <input
+                                id="email"
+                                className="form-control"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange} />
+                        </div>
+                        {formAlerts.hasSubmitted &&
+                            <Alert errors={formAlerts.errors} />}
+                        <div className="d-grid">
+                            <button
+                                type='submit'
+                                className='btn btn-primary'>Save Changes</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

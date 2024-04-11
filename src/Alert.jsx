@@ -10,12 +10,13 @@
 
 function Alert({ errors }) {
     return (
-        <div>
-            {errors.length === 0 &&
+        <div className="Alert">
+            {errors.length === 0
+                ?
                 <div className="alert alert-success" role="alert">
                     <p className="mb-0 small">Success!</p>
-                </div>}
-            {errors.length > 0 &&
+                </div>
+                :
                 <div className="alert alert-danger" role="alert">
                     {errors.map((e, idx) => <p key={idx} className="mb-0 small">{e}</p>)}
                 </div>}
