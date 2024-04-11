@@ -57,9 +57,9 @@ function NavBar({ logout }) {
   return (
     <nav className="NavBar navbar navbar-light sticky-top navbar-expand-md">
       <div className="container-fluid">
-        <NavLink
+        <Link
           className="navbar-brand ms-2"
-          to="/" end>Jobly</NavLink>
+          to="/">Jobly</Link>
         {currentUser
           ? generateLoggedInNavBar()
           : generateAnonNavBar()}

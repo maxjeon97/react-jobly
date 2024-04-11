@@ -18,6 +18,8 @@ import Alert from "./Alert";
 function EditProfileForm({ updateUser }) {
     const { currentUser } = useContext(userContext);
 
+    if (!currentUser) return <Navigate to="/" />;
+
     const initialState =
     {
         username: currentUser.username,

@@ -13,7 +13,7 @@ import { jwtDecode } from 'jwt-decode';
  * Props: none
  *
  * State:
- * - user
+ * - currentUser
  * - token
  *
  * App -> {Navbar, RoutesList}
