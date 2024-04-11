@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import userContext from "./userContext";
 import Alert from "./Alert";
 
 
@@ -15,7 +16,7 @@ import Alert from "./Alert";
  */
 
 function EditProfileForm({ updateUser }) {
-
+    const { currentUser } = useContext(userContext);
 
     const initialState =
     {
