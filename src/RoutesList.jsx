@@ -16,14 +16,13 @@ import { useContext } from "react";
  * State: none
  *
  * App -> RoutesList ->
- *           { Homepage, CompaniesList, JobsList, CompanyDetail, EditProfileForm, SignupForm, LoginForm }
+ *       { Homepage, CompaniesList, JobsList, CompanyDetail, EditProfileForm, SignupForm, LoginForm }
 */
 
 function RoutesList({ login, signup, updateUser }) {
-
     const { currentUser } = useContext(userContext);
 
-    /** generates routes jsx available when logged in */
+    /** generates JSX for accessible routes when logged in */
     function routesWhenLoggedIn() {
         return (
             <Routes>
@@ -37,7 +36,7 @@ function RoutesList({ login, signup, updateUser }) {
         );
     }
 
-    /** generates routes jsx available when not logged in */
+    /** generates JSX for accessible routes when NOT logged in */
     function routesWhenAnon() {
         return (
             <Routes>

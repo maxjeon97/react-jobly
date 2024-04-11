@@ -13,7 +13,6 @@ import SearchNotFound from "./SearchNotFound";
  * {JobsList, CompanyDetail} -> JobCardList -> {SearchNotFound, JobCard}
  */
 
-
 function JobCardList({ jobs }) {
     return (
         <div className='JobCardList'>

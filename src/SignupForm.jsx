@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
  */
 
 function SignupForm({ signup }) {
-
     const initialState =
     {
         username: "",
@@ -50,7 +49,6 @@ function SignupForm({ signup }) {
             [name]: value,
         }));
     }
-
 
     return (
         <div className="SignupForm container col-lg-4 mt-4">

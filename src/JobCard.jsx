@@ -1,5 +1,5 @@
 import './JobCard.css';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import userContext from './userContext';
 
 /** JobCard component for Jobly.

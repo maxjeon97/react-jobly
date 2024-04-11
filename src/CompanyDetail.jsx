@@ -12,9 +12,9 @@ import Alert from './Alert';
  *
  * State:
  * - company: singular company object associated with company handle from UR
- * - notFound
+ * - errors
  *
- * RoutesList -> CompanyDetail -> {JobCardList, LoadingSpinner}
+ * RoutesList -> CompanyDetail -> {JobCardList, LoadingSpinner, Alert}
  */
 
 function CompanyDetail() {

@@ -1,4 +1,3 @@
-
 /** NotFound component for Jobly.
  *
  * Props: none

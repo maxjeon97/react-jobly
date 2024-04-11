@@ -21,8 +21,6 @@ function CompaniesList() {
         searched: "",
     });
 
-
-
     useEffect(function fetchCompaniesWhenMounted() {
         search(companies.searched);
     }, []);

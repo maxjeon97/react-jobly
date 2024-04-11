@@ -22,7 +22,6 @@ function JobsList() {
         searched: "",
     });
 
-
     useEffect(function fetchJobsWhenMounted() {
         search(jobs.searched);
     }, []);

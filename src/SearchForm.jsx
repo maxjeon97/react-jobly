@@ -10,6 +10,7 @@ import { useState } from "react";
  *
  *
 */
+
 function SearchForm({ handleSearch }) {
     const [searchTerm, setSearchTerm] = useState("");
 
