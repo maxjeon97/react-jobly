@@ -23,7 +23,7 @@ function NavBar({ logout }) {
     return (
       <ul className="ms-auto navbar-nav">
         <li className="nav-item me-4">
-          <NavLink className="nav-link" to="/companies" end>Companies</NavLink>
+          <NavLink className="nav-link" to="/companies">Companies</NavLink>
         </li>
         <li className="nav-item me-4">
           <NavLink className="nav-link" to="/jobs">Jobs</NavLink>
