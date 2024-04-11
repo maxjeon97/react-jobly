@@ -8,7 +8,7 @@
 
 function SearchNotFound() {
     return (
-        <p className='SearchNotFound text-center'>Sorry, no results were found!</p>
+        <p className='SearchNotFound text-center fs-5'>Sorry, no results were found!</p>
     );
 }
 
