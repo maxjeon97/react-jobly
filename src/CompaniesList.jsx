@@ -4,6 +4,7 @@ import JoblyApi from './api';
 import SearchForm from './SearchForm';
 import CompanyCardList from "./CompanyCardList";
 import LoadingSpinner from './LoadingSpinner';
+import PageNav from './PageNav';
 
 /** CompaniesList component for Jobly.
  *
@@ -11,6 +12,7 @@ import LoadingSpinner from './LoadingSpinner';
  *
  * State:
  * - companies: array of company objects
+ * - currentPage
  *
  * RoutesList -> CompaniesList -> {CompanyCardList, LoadingSpinner, SearchForm}
  */
@@ -20,6 +22,9 @@ function CompaniesList() {
         data: null,
         searched: "",
     });
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const companiesPerPage = 10;
 
     useEffect(function fetchCompaniesWhenMounted() {
         search(companies.searched);
@@ -38,7 +43,17 @@ function CompaniesList() {
         });
     }
 
+    /** handles page navigation */
+    function handlePageNav(page) {
+        setCurrentPage(page);
+    }
+
     if (!companies.data) return <LoadingSpinner />;
+
+    // to handle pagination; grabbing only the needed amount of jobs
+    const lastIdx = currentPage * companiesPerPage;
+    const firstIdx = lastIdx - (companiesPerPage - 1);
+    const companiesOnPage = companies.data.slice(firstIdx, lastIdx + 1);
 
     return (
         <div className='CompaniesList col-md-6 offset-md-3'>
@@ -46,7 +61,12 @@ function CompaniesList() {
             {companies.searched
                 ? <h1>{`Search Results for '${companies.searched}'`}</h1>
                 : <h1>All Companies</h1>}
-            <CompanyCardList companies={companies.data} />
+            <CompanyCardList companies={companiesOnPage} />
+            <PageNav
+                totalItems={companies.data.length}
+                itemsPerPage={companiesPerPage}
+                currentPage={currentPage}
+                handlePageNav={handlePageNav} />
         </div>
     );
 }

@@ -5,6 +5,7 @@ import JoblyApi from './api';
 import JobCardList from './JobCardList';
 import LoadingSpinner from './LoadingSpinner';
 import Alert from './Alert';
+import PageNav from './PageNav';
 
 /** CompanyDetail component for Jobly.
  *
@@ -13,6 +14,7 @@ import Alert from './Alert';
  * State:
  * - company: singular company object associated with company handle from UR
  * - errors
+ * - currentPage
  *
  * RoutesList -> CompanyDetail -> {JobCardList, LoadingSpinner, Alert}
  */
@@ -22,6 +24,9 @@ function CompanyDetail() {
         data: null,
     });
     const [errors, setErrors] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const jobsPerPage = 10;
 
     const { handle } = useParams();
 
@@ -42,17 +47,32 @@ function CompanyDetail() {
         fetchCompany();
     }, []);
 
+    /** handles page navigation */
+    function handlePageNav(page) {
+        setCurrentPage(page);
+    }
+
     if (errors.length > 0 ) {
         return <Alert messages={errors} type="danger" />;
     }
 
     if (!company.data) return <LoadingSpinner />;
 
+    // to handle pagination; grabbing only the needed amount of jobs
+    const lastIdx = currentPage * jobsPerPage;
+    const firstIdx = lastIdx - (jobsPerPage - 1);
+    const jobsOnPage = company.data.jobs.slice(firstIdx, lastIdx + 1);
+
     return (
         <div className='CompanyDetail col-md-6 offset-md-3'>
             <h2>{company.data.name}</h2>
             <p>{company.data.description}</p>
-            <JobCardList jobs={company.data.jobs} />
+            <JobCardList jobs={jobsOnPage} />
+            <PageNav
+                totalItems={company.data.jobs.length}
+                itemsPerPage={jobsPerPage}
+                currentPage={currentPage}
+                handlePageNav={handlePageNav} />
         </div>
     );
 }

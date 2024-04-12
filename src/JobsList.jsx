@@ -4,6 +4,7 @@ import JoblyApi from './api';
 import SearchForm from './SearchForm';
 import JobCardList from "./JobCardList";
 import LoadingSpinner from './LoadingSpinner';
+import PageNav from './PageNav';
 
 /** JobsList component for Jobly.
  *
@@ -12,6 +13,7 @@ import LoadingSpinner from './LoadingSpinner';
  * State:
  * - jobs: array of job objects
  *  [ { id, title, salary, equity, companyHandle, companyName }, ...]
+ * - currentPage
  *
  * RoutesList -> JobsList -> {JobCardList, LoadingSpinner, SearchForm}
  */
@@ -21,6 +23,9 @@ function JobsList() {
         data: null,
         searched: "",
     });
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const jobsPerPage = 10;
 
     useEffect(function fetchJobsWhenMounted() {
         search(jobs.searched);
@@ -39,7 +44,17 @@ function JobsList() {
         });
     }
 
+    /** handles page navigation */
+    function handlePageNav(page) {
+        setCurrentPage(page);
+    }
+
     if (!jobs.data) return <LoadingSpinner />;
+
+    // to handle pagination; grabbing only the needed amount of jobs
+    const lastIdx = currentPage * jobsPerPage;
+    const firstIdx = lastIdx - (jobsPerPage - 1);
+    const jobsOnPage = jobs.data.slice(firstIdx, lastIdx + 1);
 
     return (
         <div className='JobsList col-md-6 offset-md-3'>
@@ -47,7 +62,12 @@ function JobsList() {
             {jobs.searched
                 ? <h1>{`Search Results for '${jobs.searched}'`}</h1>
                 : <h1>All Jobs</h1>}
-            <JobCardList jobs={jobs.data} />
+            <JobCardList jobs={jobsOnPage} />
+            <PageNav
+                totalItems={jobs.data.length}
+                itemsPerPage={jobsPerPage}
+                currentPage={currentPage}
+                handlePageNav={handlePageNav} />
         </div>
     );
 }
