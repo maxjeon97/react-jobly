@@ -24,7 +24,7 @@ function Homepage() {
                     alt="jobly-logo" />
             </div>
             <p className='Homepage-welcome'>
-                All the jobs in one, convenient place
+                Apply to jobs anywhere, at anytime
             </p>
             {currentUser
                 ?
