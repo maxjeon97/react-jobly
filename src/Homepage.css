@@ -8,7 +8,16 @@
   color: white;
 }
 
+.Homepage-title-logo {
+  display: flex;
+}
+
+.Homepage-logo {
+  width: 100px;
+  height: auto;
+  margin: -25px -20px;
+}
+
 .Homepage-auth a {
   margin: 0 5px;
 }
-

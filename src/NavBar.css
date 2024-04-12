@@ -16,6 +16,12 @@
   color: black;
 }
 
+.NavBar-logo {
+  width: 60px;
+  height: auto;
+  margin: -20px -10px;
+}
+
 .navbar-brand {
   color: rgb(255, 255, 255) !important;
 }

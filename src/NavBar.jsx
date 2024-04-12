@@ -33,8 +33,8 @@ function NavBar({ logout }) {
         </li>
         <li className="nav-item me-4">
           <Link className="nav-link"
-          to="/"
-          onClick={logout}>{`Logout (${currentUser.username})`}</Link>
+            to="/"
+            onClick={logout}>{`Logout (${currentUser.username})`}</Link>
         </li>
       </ul>
     );
@@ -59,7 +59,12 @@ function NavBar({ logout }) {
       <div className="container-fluid">
         <Link
           className="navbar-brand ms-2"
-          to="/">Jobly</Link>
+          to="/">Jobly
+          <img
+          className="NavBar-logo"
+          src="/logos/logo-jobly1.png"
+          alt="jobly-logo" />
+        </Link>
         {currentUser
           ? generateLoggedInNavBar()
           : generateAnonNavBar()}
