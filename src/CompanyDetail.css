@@ -1,8 +1,7 @@
 .CompanyDetail {
-  min-height: 100vh;
   margin-top: 20px;
   color: white;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .Loading {
