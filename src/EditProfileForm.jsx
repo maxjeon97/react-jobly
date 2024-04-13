@@ -63,7 +63,7 @@ function EditProfileForm({ updateUser }) {
     }
 
     return (
-        <div className="EditProfileForm container col-lg-4 mt-4">
+        <div className="EditProfileForm container col-lg-3 mt-3">
             <h2 className="text-light mb-2">Edit Profile</h2>
             <div className="card">
                 <div className="card-body">

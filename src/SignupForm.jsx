@@ -51,7 +51,7 @@ function SignupForm({ signup }) {
     }
 
     return (
-        <div className="SignupForm container col-lg-4 mt-4">
+        <div className="SignupForm container col-lg-3 mt-3">
             <h2 className="text-light mb-2">Signup</h2>
             <div className="card">
                 <div className="card-body">

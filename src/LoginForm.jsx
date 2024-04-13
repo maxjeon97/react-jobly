@@ -48,7 +48,7 @@ function LoginForm({ login }) {
     }
 
     return (
-        <div className="LoginForm container col-lg-4 mt-4">
+        <div className="LoginForm container col-lg-3 mt-3">
             <h2 className="text-light mb-2">Login</h2>
             <div className="card">
                 <div className="card-body">

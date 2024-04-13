@@ -1,15 +1,19 @@
 .Homepage {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-top: 30vh;
   text-align: center;
   color: white;
 }
 
 .Homepage-title-logo {
   display: flex;
+}
+
+.Homepage-welcome {
+  font-size: 1.2em;
 }
 
 .Homepage-logo {
